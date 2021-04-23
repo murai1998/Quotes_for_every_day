@@ -146,16 +146,29 @@
 }
 
 #container div{
-  border: 1px solid #000000;
+  border: 1px solid rgb(196, 133, 127);
   display: flex;
   flex-direction: column;
 }
-
+#buttons button{
+  border:  1px solid rgb(196, 133, 127);
+  background: #00000017;
+  color: black;
+}
 #buttons{
   display: flex;
 
 }
 
+#current_p{
+  padding: 0 1em;
+  font-size: 1.5em;
+  font-weight: 700;
+ 
+}
+body{
+  padding: 1em 0.5em;
+}
 	</style>
 <script>
 
@@ -188,14 +201,26 @@ if(page === total) {
 showPage = (items)=>{
   let conatiner = document.querySelector("#container");
    conatiner.innerHTML = ""
+
+
   items.forEach(x =>{
     let str = `<div>
-    <h3>${x.text}<h3>
+    <h3 >${x.text}<h3>
     <h3 id="author">${x.author}</h3>
     </div>`
     container.innerHTML += str;
   })
-  console.log("CC", conatiner)
+//
+
+  let childs = container.querySelectorAll('div')
+    childs.forEach(item =>{
+      h_tag = item.querySelector('h3')
+      let randomColor = Math.floor(Math.random()*16777215).toString(16);
+      let color = "#" + randomColor;
+    console.log(h_tag)
+    h_tag.style.color = color
+  })
+
 }
 
 control =  (items) =>{
@@ -246,7 +271,7 @@ state(main)
 <div class="loader" id='loader'></div>
 <div id='buttons'>
 <button id="back"><<</button>
-<h3>Page <span id="current_p">1</span></h3>
+<h3 id="current_p">1</h3>
 <button id='forward'>>></button>
 <div>
 <div id="container"></div>
